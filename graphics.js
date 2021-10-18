@@ -1,5 +1,6 @@
 
 
+//create the cavas and set general parameters
 export function crearCanvas(
     width = 400,
     height = 400,
@@ -16,11 +17,11 @@ export function crearCanvas(
     return canvas;
 }
 
-
+//clear the canvas and redraw the grid
 export function renderizar(canvas) {
     let ctx = canvas.ctx;
 
-    //limpiar canvas 
+    //clear the canvas
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
     for (let i = 0; i < 20; i++) {
