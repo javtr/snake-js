@@ -6,6 +6,7 @@ import {scoreAdd,scoreReset,scoreReturn} from "./utilities.js";
 let canvas = crearCanvas();
 let ctx = canvas.ctx; 
 
+
 //set the fps
 let fps = 15;
 let start = 0;
