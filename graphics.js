@@ -6,7 +6,6 @@ export function crearCanvas(
     height = 400,
     border = "1px dashed black",
     backgroundcolor = "white",
-    id="canv",
 ) {
     let canvas = document.createElement("canvas");
     canvas.width = width;
@@ -15,7 +14,6 @@ export function crearCanvas(
     canvas.style.backgroundcolor = backgroundcolor;
     document.body.appendChild(canvas);
     canvas.ctx = canvas.getContext("2d");
-    ctx.drawImage(tv,0,0,tv.width,tv.height);
     return canvas;
 }
 
