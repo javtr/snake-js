@@ -1,24 +1,30 @@
 import {crearCanvas, renderizar, snakeBody, snakeFood} from "./graphics.js";
+import {scoreAdd,scoreReset,scoreReturn} from "./utilities.js";
+
+
+//create canvas and context
 let canvas = crearCanvas();
 let ctx = canvas.ctx; 
-let fps = 20;
+
+
+//set the fps
+let fps = 15;
 let start = 0;
 let frameDuration = 1000 / fps;
 
+//create the snake
 let snake = [];
 snake[0] = new snakeBody();
-let comida = new snakeFood();
 
+//initial direction of sneak
 snake[0].dir = 2;
 
-
-//objetos snake y comida
-
+//create the food
+let comida = new snakeFood();
 ctx.fillStyle = "red"; 
 ctx.fillRect(40,40,20,20)
 
-
-//refrescar la pantalla
+//update the screen
     loop();
     function loop(timestamp) {
         requestAnimationFrame(loop);
@@ -32,11 +38,12 @@ ctx.fillRect(40,40,20,20)
             }
             )
 
-            // snake.render(canvas.ctx);
             start = timestamp + frameDuration;
         }
     }
 
+//detect the interaction of snake with the 
+//borders, food and same
 function  actualizar () {
 
     snakeUbicacion();
@@ -56,25 +63,26 @@ function  actualizar () {
     }
 
     if (colision()) {
-        // console.log(colision);
-        // console.log("colision");
-        // console.log(snake.length);
-        
         snake=[];
         snake[0] = new snakeBody();
+
+        scoreReset()
+
+        plog(scoreReturn());
+
     }
-
-
 
     if (snake[0].x == comida.x && snake[0].y == comida.y) {
         comida.relocate();
         snake[snake.length] = new snakeBody();
         snakeUbicacion();
+        scoreAdd()
 
+        plog(scoreReturn());
     }
 }
 
-
+//body and head behavior
 function snakeUbicacion(){
     if (snake.length > 1) {
         for (let i = 0; i < snake.length-1; i++) {
@@ -84,7 +92,7 @@ function snakeUbicacion(){
     }
 };
 
-
+//collision
 function colision() {
     let hit = false;
     if (snake.length > 1) {
@@ -96,10 +104,7 @@ function colision() {
     return hit;
 }
 
-
-
-
-//listener teclado
+//detect keyboard events
 window.addEventListener("keydown", KeyHandler, false);
 
 function KeyHandler(event) {
@@ -115,5 +120,19 @@ function KeyHandler(event) {
     else if (event.keyCode === 40) {
     snake[0].dir = 3
     };
+}
+
+
+//print
+function plog(text){
     
+    console.log(`
+    ${text}
+    snake lenght: ${snake.length}
+    snake direction: ${snake[0].dir}
+    `);
+    
+    
+
+
 }

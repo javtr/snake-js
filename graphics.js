@@ -1,10 +1,12 @@
 
 
+//create the cavas and set general parameters
 export function crearCanvas(
     width = 400,
     height = 400,
     border = "1px dashed black",
-    backgroundcolor = "white"
+    backgroundcolor = "white",
+    id="canv",
 ) {
     let canvas = document.createElement("canvas");
     canvas.width = width;
@@ -13,14 +15,15 @@ export function crearCanvas(
     canvas.style.backgroundcolor = backgroundcolor;
     document.body.appendChild(canvas);
     canvas.ctx = canvas.getContext("2d");
+    ctx.drawImage(tv,0,0,tv.width,tv.height);
     return canvas;
 }
 
-
+//clear the canvas and redraw the grid
 export function renderizar(canvas) {
     let ctx = canvas.ctx;
 
-    //limpiar canvas 
+    //clear the canvas
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
     for (let i = 0; i < 20; i++) {
