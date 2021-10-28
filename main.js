@@ -1,6 +1,6 @@
 import {crearCanvas, renderizar, snakeBody, snakeFood} from "./graphics.js";
 import {scoreAdd,scoreReset,scoreReturn} from "./utilities.js";
-
+import {updateScore} from "./app.js"
 
 //create canvas and context
 let canvas = crearCanvas();
@@ -26,7 +26,7 @@ ctx.fillRect(40,40,20,20)
 
 //start the score
 scoreReset();
-
+updateScore(snake.length);
 
 
 //update the screen
@@ -72,7 +72,7 @@ function  actualizar () {
         snake[0] = new snakeBody();
 
         scoreReset()
-
+        updateScore(snake.length);
 
     }
 
@@ -80,9 +80,9 @@ function  actualizar () {
         comida.relocate();
         snake[snake.length] = new snakeBody();
         snakeUbicacion();
-        scoreAdd(1);
 
-        plog(scoreReturn());
+        scoreAdd(10);
+        updateScore(snake.length);
 
     }
 }
