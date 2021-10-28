@@ -8,7 +8,7 @@ let ctx = canvas.ctx;
 
 
 //set the fps
-let fps = 15;
+let fps = 10;
 let start = 0;
 let frameDuration = 1000 / fps;
 
@@ -23,6 +23,11 @@ snake[0].dir = 2;
 let comida = new snakeFood();
 ctx.fillStyle = "red"; 
 ctx.fillRect(40,40,20,20)
+
+//start the score
+scoreReset();
+
+
 
 //update the screen
     loop();
@@ -68,7 +73,6 @@ function  actualizar () {
 
         scoreReset()
 
-        plog(scoreReturn());
 
     }
 
@@ -76,9 +80,10 @@ function  actualizar () {
         comida.relocate();
         snake[snake.length] = new snakeBody();
         snakeUbicacion();
-        scoreAdd()
+        scoreAdd(1);
 
         plog(scoreReturn());
+
     }
 }
 
