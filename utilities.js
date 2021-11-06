@@ -1,5 +1,7 @@
 import {updateScore} from "./app.js"
 let score = 0;
+let level = 0;
+let speed = 10;
 let timeAnt;
 let timeAct;
 
@@ -22,6 +24,8 @@ export function scoreAdd() {
 
 export function scoreReset() {
     score = 0;
+    level = 0;
+    speed = 10;
     updateScore();
     return score;
 }
@@ -45,9 +49,19 @@ export function timeDiff(timeNow) {
     return diffTime;
 }
 
+export function updateLevel(lenght) {
+  if (lenght % 10 == 0) {
+    level = level + 1;
+    speed = speed + level;
+  }
+}
 
 
+export function getLevel() {
+  return level;
+}
 
-
-
-
+export function getSpeed() {
+    return speed;
+  }
+  

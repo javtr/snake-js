@@ -1,5 +1,5 @@
 import {crearCanvas, renderizar, snakeBody, snakeFood} from "./graphics.js";
-import {scoreAdd,scoreReset,scoreReturn,timeDiff} from "./utilities.js";
+import {scoreAdd,scoreReset,scoreReturn,updateLevel,getSpeed} from "./utilities.js";
 import {updateScore} from "./app.js"
 
 //create canvas and context
@@ -8,7 +8,7 @@ let ctx = canvas.ctx;
 
 
 //set the fps
-let fps = 10;
+let fps = getSpeed();
 let start = 0;
 let frameDuration = 1000 / fps;
 
@@ -73,21 +73,27 @@ function  actualizar () {
         snake=[];
         snake[0] = new snakeBody();
 
-        scoreReset()
+        scoreReset();
         updateScore(snake.length);
     }
 
     //detect food
     if (snake[0].x == comida.x && snake[0].y == comida.y) {
 
-
         comida.relocate();
         snake[snake.length] = new snakeBody();
         snakeUbicacion();
 
+        //verify level
+        updateLevel(snake.length);
+
+        //increment score
         scoreAdd();
         updateScore(snake.length);
 
+        //increment speed
+        fps = getSpeed();
+        frameDuration = 1000 / fps;
     }
 }
 
