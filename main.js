@@ -1,5 +1,5 @@
 import {crearCanvas, renderizar, snakeBody, snakeFood} from "./graphics.js";
-import {scoreAdd,scoreReset,scoreReturn} from "./utilities.js";
+import {scoreAdd,scoreReset,scoreReturn,timeDiff} from "./utilities.js";
 import {updateScore} from "./app.js"
 
 //create canvas and context
@@ -54,6 +54,7 @@ function  actualizar () {
     snakeUbicacion();
     snake[0].mover();
 
+    //detect canvas output
     if (snake[0].x >= canvas.width) {
         snake[0].x = 0;
     }
@@ -67,6 +68,7 @@ function  actualizar () {
         snake[0].y = canvas.width-20;
     }
 
+    //detect collision
     if (colision()) {
         snake=[];
         snake[0] = new snakeBody();
@@ -75,12 +77,15 @@ function  actualizar () {
         updateScore(snake.length);
     }
 
+    //detect food
     if (snake[0].x == comida.x && snake[0].y == comida.y) {
+
+
         comida.relocate();
         snake[snake.length] = new snakeBody();
         snakeUbicacion();
 
-        scoreAdd(10);
+        scoreAdd();
         updateScore(snake.length);
 
     }
