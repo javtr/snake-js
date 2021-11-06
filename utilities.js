@@ -50,7 +50,7 @@ export function timeDiff(timeNow) {
 }
 
 export function updateLevel(lenght) {
-  if (lenght % 2 == 0) {
+  if (lenght % 5 == 0) {
     level = level + 1;
     speed = speed + 1;
     console.log(speed);

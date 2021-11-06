@@ -68,14 +68,14 @@ function  actualizar () {
         snake[0].y = canvas.width-20;
     }
 
-    //detect collision
-    // if (colision()) {
-    //     snake=[];
-    //     snake[0] = new snakeBody();
+    // detect collision
+    if (colision()) {
+        snake=[];
+        snake[0] = new snakeBody();
 
-    //     scoreReset();
-    //     updateScore(snake.length);
-    // }
+        scoreReset();
+        updateScore(snake.length);
+    }
 
     //detect food
     if (snake[0].x == comida.x && snake[0].y == comida.y) {
