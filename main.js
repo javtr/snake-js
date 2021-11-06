@@ -52,8 +52,8 @@ updateScore(snake.length);
 function  actualizar () {
 
     snakeUbicacion();
-
     snake[0].mover();
+
     if (snake[0].x >= canvas.width) {
         snake[0].x = 0;
     }
@@ -73,7 +73,6 @@ function  actualizar () {
 
         scoreReset()
         updateScore(snake.length);
-
     }
 
     if (snake[0].x == comida.x && snake[0].y == comida.y) {
@@ -113,16 +112,16 @@ function colision() {
 window.addEventListener("keydown", KeyHandler, false);
 
 function KeyHandler(event) {
-    if (event.keyCode === 37) {
+    if (event.keyCode === 37 && snake[0].dir != 2) {
         snake[0].dir = 0
     }
-    else if (event.keyCode === 38) {
+    else if (event.keyCode === 38 && snake[0].dir != 3) {
         snake[0].dir = 1
     }
-    else if (event.keyCode === 39) {
+    else if (event.keyCode === 39 && snake[0].dir != 0) {
     snake[0].dir = 2
     }
-    else if (event.keyCode === 40) {
+    else if (event.keyCode === 40 && snake[0].dir != 1) {
     snake[0].dir = 3
     };
 }
